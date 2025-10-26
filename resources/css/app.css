@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+    /* Autres variables si nécessaire */
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: color-mix(in srgb, var(--primary-color), #000000 10%);
+}
+
+.sidebar-menu a.active {
+    border-left: 4px solid var(--primary-color);
+}
