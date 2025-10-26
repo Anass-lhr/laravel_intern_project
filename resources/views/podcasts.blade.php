@@ -1473,25 +1473,7 @@ img {
     }
     .comment-meta {
         font-size: 0.7rem;
-    }
-    .comment-actions button {
-        font-size: 0.7rem;
-    }
-    .footer-social {
-        gap: 1rem;
-    }
-    .footer-social .social-link {
-        font-size: 1.2rem;
-    }
-    .footer-text {
-        font-size: 0.75rem;
-    }
-}
-
-@media (max-width: 400px) {
-    .sidebar {
-        width: 0; /* Hide sidebar */
-        padding: 0;
+  
         overflow: hidden;
     }
     .logo-container {
@@ -1651,36 +1633,7 @@ main.py-20 {
 
     
 <script>
-const API_KEY = "AIzaSyAScg-HM7-PlWLZ8HEXx6L-2y--g-6bCUQ";
-let videosData = [];
-window.videosData = videosData; // Rendre accessible globalement
-let currentVideo = null;
-let localComments = [];
-let currentPage = 1;
-window.currentPage = currentPage; // Rendre accessible globalement pour la recherche
-const videosPerPage = 9;
-let isVideoPlayerActive = false;
-let allComments = [];
 
-const currentUser = {
-    name: @auth "{{ auth()->user()->name }}" @else null @endauth,
-    avatar: @auth 
-        @if (auth()->user()->avatar)
-            "{{ Storage::url(auth()->user()->avatar) }}"
-        @elseif (auth()->user()->provider)
-            "https://via.placeholder.com/40"
-        @else
-            null
-        @endif
-    @else
-        "https://via.placeholder.com/40"
-    @endauth,
-    avatarInitial: @auth 
-        @if (!auth()->user()->avatar && !auth()->user()->provider)
-            "{{ substr(auth()->user()->name, 0, 1) }}"
-        @else
-            null
-        @endif
     @else
         null
     @endauth,
@@ -1716,21 +1669,7 @@ function signIn() {
     window.location.href = '/login';
 }
 
-function updateSignInStatus() {
-    console.log("Mise à jour de l'état de connexion. Utilisateur local :", currentUser.name);
-    const commentFormDiv = document.getElementById('comment-form');
-    if (!commentFormDiv) {
-        console.error("Erreur : Le conteneur #comment-form est introuvable.");
-        return;
-    }
-
-const isBlocked = @json(isset($isBlocked) && $isBlocked || (auth()->check() && auth()->user()->role === 'admin' && !auth()->user()->is_active));
-    if (currentUser.name) {
-        if (isBlocked) {
-            commentFormDiv.innerHTML = `
-                <textarea id="comment-input" placeholder="Vous êtes bloqué et ne pouvez pas commenter." rows="4" readonly></textarea>
-                <div class="comment-form-buttons">
-                    <button class="cancel-btn" onclick="document.getElementById('comment-input').value = ''; console.log('Commentaire annulé');" disabled>Annuler</button>
+l-btn" onclick="document.getElementById('comment-input').value = ''; console.log('Commentaire annulé');" disabled>Annuler</button>
                     <button disabled>Commenter</button>
                 </div>
             `;
